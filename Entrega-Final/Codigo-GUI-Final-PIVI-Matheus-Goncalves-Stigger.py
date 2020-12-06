@@ -830,6 +830,161 @@ class Ui_MainWindow(object):
         except mc.Error as e:
             print("Error")
 
+    # MINIMO CPU (%)
+    def botao13(self):
+        try:
+            mydb = mc.connect(host="localhost",user="root",password="201811057",database="mydatabase")
+            mycursor = mydb.cursor()
+
+            datainicial = self.dateTimeEdit_4.text()
+            dia = (datainicial[0]) + (datainicial[1])
+            mes = (datainicial[3]) + (datainicial[4])
+            ano = (datainicial[6]) + (datainicial[7]) + (datainicial[8]) + (datainicial[9])
+            hora = (datainicial[11]) + (datainicial[12])
+            minuto = (datainicial[14]) + (datainicial[15])
+
+            datafinal = self.dateTimeEdit_3.text()
+            dia2 = (datafinal[0]) + (datafinal[1])
+            mes2 = (datafinal[3]) + (datafinal[4])
+            ano2 = (datafinal[6]) + (datafinal[7]) + (datafinal[8]) + (datafinal[9])
+            hora2 = (datafinal[11]) + (datafinal[12])
+            minuto2 = (datafinal[14]) + (datafinal[15])
+
+            mycursor.execute("SELECT data, hora, CONCAT(cpu_percent, ' %') FROM datahora INNER JOIN cpu ON datahora.id = cpu.id WHERE ((data = '{}-{}-{}' AND hora >= '{}:{}:00') OR (data > '{}-{}-{}' AND data < '{}-{}-{}') OR (data = '{}-{}-{}' AND hora <= '{}:{}:00')) ORDER BY cpu_percent ASC LIMIT 1".format(ano, mes, dia, hora, minuto, ano, mes, dia, ano2, mes2, dia2, ano2, mes2, dia2, hora2, minuto2))
+
+            result = mycursor.fetchall()
+            self.tableWidget.setRowCount(0)
+            for row_number, row_data in enumerate(result):
+                self.tableWidget.insertRow(row_number)
+                for column_number, data in enumerate(row_data):
+                    self.tableWidget.setItem(row_number, column_number, QTableWidgetItem(str(data)))
+        except mc.Error as e:
+            print("Error")
+
+    # MINIMO CPU (MHz)
+    def botao20(self):
+        try:
+            mydb = mc.connect(host="localhost",user="root",password="201811057",database="mydatabase")
+            mycursor = mydb.cursor()
+
+            datainicial = self.dateTimeEdit_6.text()
+            dia = (datainicial[0]) + (datainicial[1])
+            mes = (datainicial[3]) + (datainicial[4])
+            ano = (datainicial[6]) + (datainicial[7]) + (datainicial[8]) + (datainicial[9])
+            hora = (datainicial[11]) + (datainicial[12])
+            minuto = (datainicial[14]) + (datainicial[15])
+
+            datafinal = self.dateTimeEdit_5.text()
+            dia2 = (datafinal[0]) + (datafinal[1])
+            mes2 = (datafinal[3]) + (datafinal[4])
+            ano2 = (datafinal[6]) + (datafinal[7]) + (datafinal[8]) + (datafinal[9])
+            hora2 = (datafinal[11]) + (datafinal[12])
+            minuto2 = (datafinal[14]) + (datafinal[15])
+
+            mycursor.execute("SELECT data, hora, CONCAT(cpu_mhz, ' MHz') FROM datahora INNER JOIN cpu ON datahora.id = cpu.id WHERE ((data = '{}-{}-{}' AND hora >= '{}:{}:00') OR (data > '{}-{}-{}' AND data < '{}-{}-{}') OR (data = '{}-{}-{}' AND hora <= '{}:{}:00')) ORDER BY cpu_mhz ASC LIMIT 1".format(ano, mes, dia, hora, minuto, ano, mes, dia, ano2, mes2, dia2, ano2, mes2, dia2, hora2, minuto2))
+
+            result = mycursor.fetchall()
+            self.tableWidget.setRowCount(0)
+            for row_number, row_data in enumerate(result):
+                self.tableWidget.insertRow(row_number)
+                for column_number, data in enumerate(row_data):
+                    self.tableWidget.setItem(row_number, column_number, QTableWidgetItem(str(data)))
+        except mc.Error as e:
+            print("Error")
+
+    # MINIMO CPU (°C)
+    def botao27(self):
+        try:
+            mydb = mc.connect(host="localhost",user="root",password="201811057",database="mydatabase")
+            mycursor = mydb.cursor()
+
+            datainicial = self.dateTimeEdit_8.text()
+            dia = (datainicial[0]) + (datainicial[1])
+            mes = (datainicial[3]) + (datainicial[4])
+            ano = (datainicial[6]) + (datainicial[7]) + (datainicial[8]) + (datainicial[9])
+            hora = (datainicial[11]) + (datainicial[12])
+            minuto = (datainicial[14]) + (datainicial[15])
+
+            datafinal = self.dateTimeEdit_7.text()
+            dia2 = (datafinal[0]) + (datafinal[1])
+            mes2 = (datafinal[3]) + (datafinal[4])
+            ano2 = (datafinal[6]) + (datafinal[7]) + (datafinal[8]) + (datafinal[9])
+            hora2 = (datafinal[11]) + (datafinal[12])
+            minuto2 = (datafinal[14]) + (datafinal[15])
+
+            mycursor.execute("SELECT data, hora, CONCAT(cpu_temp, ' °C') FROM datahora INNER JOIN cpu ON datahora.id = cpu.id WHERE ((data = '{}-{}-{}' AND hora >= '{}:{}:00') OR (data > '{}-{}-{}' AND data < '{}-{}-{}') OR (data = '{}-{}-{}' AND hora <= '{}:{}:00')) ORDER BY cpu_temp ASC LIMIT 1".format(ano, mes, dia, hora, minuto, ano, mes, dia, ano2, mes2, dia2, ano2, mes2, dia2, hora2, minuto2))
+
+            result = mycursor.fetchall()
+            self.tableWidget.setRowCount(0)
+            for row_number, row_data in enumerate(result):
+                self.tableWidget.insertRow(row_number)
+                for column_number, data in enumerate(row_data):
+                    self.tableWidget.setItem(row_number, column_number, QTableWidgetItem(str(data)))
+        except mc.Error as e:
+            print("Error")
+
+    # MINIMO DISCO (%)
+    def botao34(self):
+        try:
+            mydb = mc.connect(host="localhost",user="root",password="201811057",database="mydatabase")
+            mycursor = mydb.cursor()
+
+            datainicial = self.dateTimeEdit_10.text()
+            dia = (datainicial[0]) + (datainicial[1])
+            mes = (datainicial[3]) + (datainicial[4])
+            ano = (datainicial[6]) + (datainicial[7]) + (datainicial[8]) + (datainicial[9])
+            hora = (datainicial[11]) + (datainicial[12])
+            minuto = (datainicial[14]) + (datainicial[15])
+
+            datafinal = self.dateTimeEdit_9.text()
+            dia2 = (datafinal[0]) + (datafinal[1])
+            mes2 = (datafinal[3]) + (datafinal[4])
+            ano2 = (datafinal[6]) + (datafinal[7]) + (datafinal[8]) + (datafinal[9])
+            hora2 = (datafinal[11]) + (datafinal[12])
+            minuto2 = (datafinal[14]) + (datafinal[15])
+
+            mycursor.execute("SELECT data, hora, CONCAT(disk_percent, ' %') FROM datahora INNER JOIN disk ON datahora.id = disk.id WHERE ((data = '{}-{}-{}' AND hora >= '{}:{}:00') OR (data > '{}-{}-{}' AND data < '{}-{}-{}') OR (data = '{}-{}-{}' AND hora <= '{}:{}:00')) ORDER BY disk_percent ASC LIMIT 1".format(ano, mes, dia, hora, minuto, ano, mes, dia, ano2, mes2, dia2, ano2, mes2, dia2, hora2, minuto2))
+
+            result = mycursor.fetchall()
+            self.tableWidget.setRowCount(0)
+            for row_number, row_data in enumerate(result):
+                self.tableWidget.insertRow(row_number)
+                for column_number, data in enumerate(row_data):
+                    self.tableWidget.setItem(row_number, column_number, QTableWidgetItem(str(data)))
+        except mc.Error as e:
+            print("Error")
+
+    # MINIMO BATERIA (%)
+    def botao41(self):
+        try:
+            mydb = mc.connect(host="localhost",user="root",password="201811057",database="mydatabase")
+            mycursor = mydb.cursor()
+
+            datainicial = self.dateTimeEdit_12.text()
+            dia = (datainicial[0]) + (datainicial[1])
+            mes = (datainicial[3]) + (datainicial[4])
+            ano = (datainicial[6]) + (datainicial[7]) + (datainicial[8]) + (datainicial[9])
+            hora = (datainicial[11]) + (datainicial[12])
+            minuto = (datainicial[14]) + (datainicial[15])
+
+            datafinal = self.dateTimeEdit_11.text()
+            dia2 = (datafinal[0]) + (datafinal[1])
+            mes2 = (datafinal[3]) + (datafinal[4])
+            ano2 = (datafinal[6]) + (datafinal[7]) + (datafinal[8]) + (datafinal[9])
+            hora2 = (datafinal[11]) + (datafinal[12])
+            minuto2 = (datafinal[14]) + (datafinal[15])
+
+            mycursor.execute("SELECT data, hora, CONCAT(battery_percent, ' %') FROM datahora INNER JOIN battery ON datahora.id = battery.id WHERE ((data = '{}-{}-{}' AND hora >= '{}:{}:00') OR (data > '{}-{}-{}' AND data < '{}-{}-{}') OR (data = '{}-{}-{}' AND hora <= '{}:{}:00')) ORDER BY battery_percent ASC LIMIT 1".format(ano, mes, dia, hora, minuto, ano, mes, dia, ano2, mes2, dia2, ano2, mes2, dia2, hora2, minuto2))
+
+            result = mycursor.fetchall()
+            self.tableWidget.setRowCount(0)
+            for row_number, row_data in enumerate(result):
+                self.tableWidget.insertRow(row_number)
+                for column_number, data in enumerate(row_data):
+                    self.tableWidget.setItem(row_number, column_number, QTableWidgetItem(str(data)))
+        except mc.Error as e:
+            print("Error")
+
 ################################################################################################################################
 ################################################################################################################################
 
@@ -939,6 +1094,7 @@ class Ui_MainWindow(object):
         self.pushButton_13 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_13.setGeometry(QtCore.QRect(520, 160, 81, 23))
         self.pushButton_13.setObjectName("pushButton_13")
+        self.pushButton_13.clicked.connect(self.botao13)
         self.pushButton_14 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_14.setGeometry(QtCore.QRect(610, 190, 81, 23))
         self.pushButton_14.setObjectName("pushButton_14")
@@ -990,6 +1146,7 @@ class Ui_MainWindow(object):
         self.pushButton_20 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_20.setGeometry(QtCore.QRect(520, 280, 81, 23))
         self.pushButton_20.setObjectName("pushButton_20")
+        self.pushButton_20.clicked.connect(self.botao20)
         self.pushButton_21 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_21.setGeometry(QtCore.QRect(610, 310, 81, 23))
         self.pushButton_21.setObjectName("pushButton_21")
@@ -1041,6 +1198,7 @@ class Ui_MainWindow(object):
         self.pushButton_27 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_27.setGeometry(QtCore.QRect(520, 400, 81, 23))
         self.pushButton_27.setObjectName("pushButton_27")
+        self.pushButton_27.clicked.connect(self.botao27)
         self.pushButton_28 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_28.setGeometry(QtCore.QRect(610, 430, 81, 23))
         self.pushButton_28.setObjectName("pushButton_28")
@@ -1092,6 +1250,7 @@ class Ui_MainWindow(object):
         self.pushButton_34 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_34.setGeometry(QtCore.QRect(520, 520, 81, 23))
         self.pushButton_34.setObjectName("pushButton_34")
+        self.pushButton_34.clicked.connect(self.botao34)
         self.pushButton_35 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_35.setGeometry(QtCore.QRect(610, 550, 81, 23))
         self.pushButton_35.setObjectName("pushButton_35")
@@ -1143,6 +1302,7 @@ class Ui_MainWindow(object):
         self.pushButton_41 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_41.setGeometry(QtCore.QRect(520, 640, 81, 23))
         self.pushButton_41.setObjectName("pushButton_41")
+        self.pushButton_41.clicked.connect(self.botao41)
         self.pushButton_42 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_42.setGeometry(QtCore.QRect(610, 670, 81, 23))
         self.pushButton_42.setObjectName("pushButton_42")
